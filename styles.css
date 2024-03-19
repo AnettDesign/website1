@@ -1,0 +1,148 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin-right: 20px;
+}
+
+.menu-toggle {
+  display: none;
+}
+body {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Медіа-запит для екранів шириною 768px і більше */
+@media screen and (min-width: 768px) {
+  body {
+      font-size: 18px; /* Збільшення розміру шрифту для більших екранів */
+  }
+}
+
+/* Медіа-запит для екранів шириною 1024px і більше */
+@media screen and (min-width: 1024px) {
+  body {
+      font-size: 20px; /* Збільшення розміру шрифту ще більше для дуже великих екранів */
+  }
+}
+/* Селектор по класу */
+.main-section {
+  background-color: #ad7a55;
+  padding: 20px;
+}
+
+/* Селектор по id */
+#main-content {
+  border: 1px solid black;
+  margin: 10px;
+}
+
+/* Груповий селектор */
+.main-section, #main-content {
+  font-family: Arial, sans-serif;
+}
+
+/* Різноманітні властивості */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ще різноманітні властивості */
+a {
+  text-decoration: none;
+  color: darkblue;
+}
+
+/* Використання псевдо-класу */
+a:hover {
+  opacity: 0.7;
+}
+
+/* Зміст тегу body */
+body {
+  max-width: 1600px;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #ad7a55;
+  color: black;
+}
+header {
+  background-color: #ad7a55; /* сірий колір */
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black; 
+  margin-bottom: 20px; /* Встановлення відступу від хедера на 20 пікселів */
+}
+nav {
+  margin-right: 20px; /* відступ від правого краю сторінки */
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+  margin-left: 20px; /* відступи між пунктами меню */
+}
+nav ul li:first-child {
+  margin-left: 0; /* відступи тільки між пунктами, а не перед першим пунктом */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(37, 30, 30); /* колір тексту посилань */
+}
+footer {
+  background-color: #6F4E37; /* Сірий колір футера */
+  color: rgb(0, 0, 0); /* Колір тексту */
+  text-align: center; /* Вирівнювання тексту по центру */
+  width: 100%; /* Розтягнути футер на всю ширину */
+  padding: 20px; /* Додамо відступи для кращого оформлення */
+  position: relative; /* Зберігаємо футер в потоці документа */
+  margin-top: 20px; /* Автоматичний відступ зверху */
+  box-sizing: border-box; 
+ 
+
+}
+
+footer a {
+  color: #CCCCCC; /* Сірий колір посилань */
+  text-decoration: none; /* Видалення підкреслення посилань */
+}
+
+.logo {
+  width: 100px; /* ширина логотипу */
+  height: auto; /* автоматична висота */
+  margin: 10px; /* відступи */
+}
+.responsive-image {
+  max-width: 100%;
+  margin-top: 20px;
+  width: 1200px;
+  height: 475px;
+  display: block; /* Щоб забезпечити відстань навколо фото */
+  margin: 0 auto; /* Центруємо фото по горизонталі */
+}
+img {
+  transition: transform 0.3s ease; /* Додаємо плавний перехід для зміни масштабу */
+}
+
+img:hover {
+  transform: scale(1.1); /* Збільшуємо масштаб картинки при наведенні курсора */
+}

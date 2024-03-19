@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Мій сайт - RetroVogue</title>
+</head>
+
+<body>
+    <header>
+        <img src="D:\University\WebK\RetroVogue\image\logo.png" alt="Логотип" class="logo">
+        <h1>My website - RetroVogue</h1>
+          <!-- Гіперпосилання на інші сторінки сайту -->
+          <nav>
+              <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About us</a></li>
+                  <li><a href="contacts.html">Contacts</a></li>
+              </ul>
+          </nav>
+      </header>
+    <style>
+        .about-us-header {
+        padding: 40px 0; /* Задаємо більший відступ зверху і знизу для хедера */
+    }
+    
+    .about-us-header .logo {
+        margin-right: auto; /* Розміщуємо логотип зліва */
+    }
+    
+    .about-us-header nav {
+        margin-left: auto; /* Розміщуємо навігаційне меню справа */
+    }
+    
+    .about-us-header nav ul {
+        list-style: none; /* Приховуємо маркери списку */
+    }
+    
+    .about-us-header nav ul li {
+        display: inline; /* Розміщуємо пункти меню в один рядок */
+        margin-left: 20px; /* Задаємо відступ між пунктами меню */
+    }
+    
+    .about-us-header nav ul li a {
+        text-decoration: none; /* Відключаємо підкреслення для посилань */
+        color: #333; /* Колір тексту */
+        font-weight: bold; /* Жирний шрифт */
+    }
+    
+    </style>
+  <section>
+    <h2>Contact</h2>
+    <div class="container">
+        <div class="block">
+            <h3>Address</h3>
+            <p>123 Retro Street</p>
+            <p>Retroville, RV 12345</p>
+        </div>
+        <div class="block">
+            <h3>Phone</h3>
+            <p>+123 456 7890</p>
+        </div>
+        <div class="block">
+            <h3>Contact Form</h3>
+            <form action="submit_contact_form.php" method="post">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+<style>.container {
+    text-align: center; /* Це вирівняє всі блоки по центру */
+}
+
+.block {
+    display: inline-block; /* Це зробить блоки розташовані один біля одного */
+    width: 30%; /* Ширина кожного блоку */
+    height: 400px; 
+    margin: 20; /* Відступи між блоками */
+    vertical-align: top; /* Вирівнювання по верхньому краю */
+    border: 2px solid black; /* Задаємо чорний контур товщиною 2px */
+    padding: 20px; /* Додаємо відступи для кращого оформлення */
+    box-sizing: border-box; /* Розрахунок ширини, включаючи падінг і рамку */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Додаємо тінь */
+    opacity: 0; /* Початкова прозорість блоків (вони будуть невидимими) */
+    transition: opacity 0.5s ease-in-out; /* Анімація зміни прозорості триває 0.5 секунди з ефектом ease-in-out */
+}
+.block.visible {
+    opacity: 1; /* Коли клас visible доданий до блока, він стає видимим */
+}
+.block:nth-child(1) {
+    animation: fadeIn 0.5s ease-in-out forwards 0.5s;
+}
+
+.block:nth-child(2) {
+    animation: fadeIn 0.5s ease-in-out forwards 1s;
+}
+
+.block:nth-child(3) {
+    animation: fadeIn 0.5s ease-in-out forwards 1.5s;
+}
+
+/* Анімація появи блоків */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+</style>
+<footer>
+    <!-- Гіперпосилання на інші сайти -->
+        <p> <a href=https://vogue.ua/article/fashion/tendencii/7-retro-tendenciy-kotorye-snova-populyarny-v-etom-sezone-46008.html>Vogue</a></p>
+    
+    <p>© 2024 RetroVogue. All rights reserved.</p></a></p>
+</footer>
+  
+
+</body>
+
+</html>
