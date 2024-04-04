@@ -1,0 +1,50 @@
+{
+    "questions": [
+        {
+            "question": "What iconic hairstyle is associated with the 1950s?",
+            "answers": [
+                "Mullet",
+                "Pompadour",
+                "Afro",
+                "Beehive"
+            ],
+            "correct_answer": "Beehive"
+        },
+        {
+            "question": "Which famous car model epitomized the 1960s American muscle car era?",
+            "answers": [
+                "Ford Mustang", 
+                "Chevrolet Corvette", 
+                "Volkswagen Beetle", 
+                "Dodge Charger"],
+            "correct_answer": "Ford Mustang"
+        },
+        {
+            "question": "What dance craze gained popularity in the 1970s disco era?",
+        "answers": [
+            "Tango",
+            "Breakdance", 
+            "Twist", 
+            "Hustle"],
+        "correct_answer": "Hustle"
+        },
+        {
+            "question": "Who was a prominent fashion icon in the 1980s?",
+        "answers": [
+            "Audrey Hepburn", 
+            "Madonna", 
+            "James Dean", 
+            "Marilyn Monroe"],
+        "correct_answer": "Madonna"
+        },
+        {
+            "question": "What footwear became popular in the 1950s among teenagers?",
+            "answers": [
+                "Sandals", 
+                "Sneakers", 
+                "Loafers", 
+                "Flip-flops"],
+            "correct_answer": "Sneakers"
+        }
+    ]
+}

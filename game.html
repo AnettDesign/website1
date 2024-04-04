@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="sts.css">
+
+    <title>Simple Canvas Game</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="D:\University\WebK\RetroVogue\image\logo.png" alt="Логотип" class="logo">
+        <h1>Play the game!</h1>
+          <!-- Гіперпосилання на інші сторінки сайту -->
+          <nav>
+              <div class="menu-toggle">&#9776;</div>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About us</a></li>
+                      <li><a href="contacts.html">Contacts</a></li>
+                      <li><a href="game.html">game</a></li>
+                  </ul>
+          </nav>
+          
+      </header>
+ <div id="gameContainer">
+    <canvas id="gameCanvas" width="700" height="500"></canvas>
+ <!-- Додаємо блок для відображення три найкращих та три найгірших результатів -->
+ <div id="topScores"></div>
+ <div id="lowestScores"></div>
+</div>
+
+
+    <script>
+        var canvas = document.getElementById("gameCanvas");
+        var ctx = canvas.getContext("2d");
+        var score = 0;
+        var scoreHistory = []; // Масив для зберігання історії рахунків
+
+        // Оголошення об'єкту для зірки і початкових координат м'яча та швидкості руху
+        var star = {
+            x: 100,
+            y: 100,
+            radius: 50,
+        };
+        var ballX = canvas.width / 2;
+        var ballY = canvas.height / 2;
+        var ballSpeedX = 0;
+        var ballSpeedY = 0;
+        var ballSpeed = 2;
+        
+
+        // Функція для малювання зірки
+        function drawStar() {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI*2);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Функція для малювання м'яча
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, 30, 0, Math.PI*2);
+            ctx.fillStyle = "#000000";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Функція для перевірки зіткнення м'яча зі зіркою
+        function detectCollision() {
+            var distance = Math.sqrt(Math.pow(ballX - star.x, 2) + Math.pow(ballY - star.y, 2));
+            if (distance < 20 + star.radius) {
+                score += 10;
+                star.x = Math.random() * canvas.width;
+                star.y = Math.random() * canvas.height;
+            }
+        }
+
+        // Функція для перевірки зіткнення м'яча з межами ігрового поля
+        function detectBoundaryCollision() {
+            if (ballX + ballSpeedX > canvas.width - 20 || ballX + ballSpeedX < 20 || ballY + ballSpeedY > canvas.height - 20 || ballY + ballSpeedY < 20) {
+                resetGame();
+            }
+        }
+
+        // Функція для скидання гри в початковий стан
+        function resetGame() {
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+            ballSpeedX = 0;
+            ballSpeedY = 0;
+            scoreHistory.push(score); // Додати поточний рахунок до історії
+            score = 0;
+            scoreHistory.sort((a, b) => b - a); // Сортувати історію
+            console.log("Top 3 Scores: " + scoreHistory.slice(0, 3)); // Вивести три найкращі рахунки
+            console.log("Lowest 3 Scores: " + scoreHistory.slice(-3)); // Вивести три найгірші рахунки
+        }
+
+        
+        // Оголошення функції для малювання ігрових елементів та виводу рахунку
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawBall();
+            drawStar();
+
+            detectCollision();
+            detectBoundaryCollision();
+
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#000000"
+            ctx.fillText("Score: " + score, 8, 20);
+
+            if (ballSpeedX !== 0 || ballSpeedY !== 0) {
+                ballX += ballSpeedX;
+                ballY += ballSpeedY;
+
+                if(ballX + ballSpeedX > canvas.width - 20 || ballX + ballSpeedX < 20) {
+                    ballSpeedX = 0;
+                }
+                if(ballY + ballSpeedY > canvas.height - 20 || ballY + ballSpeedY < 20) {
+                    ballSpeedY = 0;
+                }
+            }
+        }
+        // Функція для скидання гри в початковий стан
+function resetGame() {
+    ballX = canvas.width / 2;
+    ballY = canvas.height / 2;
+    ballSpeedX = 0;
+    ballSpeedY = 0;
+    scoreHistory.push(score); // Додати поточний рахунок до історії
+    score = 0;
+    scoreHistory.sort((a, b) => b - a); // Сортувати історію
+
+    // Вивести три найкращі результати
+    var topScoresElement = document.getElementById("topScores");
+    topScoresElement.innerHTML = "<h3>Top 3 Scores:</h3>";
+    for (var i = 0; i < 3; i++) {
+        topScoresElement.innerHTML += "<p>Score " + (i + 1) + ": " + scoreHistory[i] + "</p>";
+    }
+
+    // Вивести трій найгірших результати
+    var lowestScoresElement = document.getElementById("lowestScores");
+    lowestScoresElement.innerHTML = "<h3>Lowest 3 Scores:</h3>";
+    for (var i = scoreHistory.length - 1; i > scoreHistory.length - 4; i--) {
+        lowestScoresElement.innerHTML += "<p>Score " + (scoreHistory.length - i) + ": " + scoreHistory[i] + "</p>";
+    }
+    console.log("Top 3 Scores: " + scoreHistory.slice(0, 3)); // Вивести три найкращі рахунки
+    console.log("Lowest 3 Scores: " + scoreHistory.slice(-3)); // Вивести три найгірші рахунки
+}
+
+
+        // Оновлення гри кожні 10 мс
+        setInterval(draw, 10);
+
+        // Обробник подій для натискання клавіш клавіатури
+        document.addEventListener("keydown", function(event) {
+            if(event.key === "ArrowUp") {
+                ballSpeedY = -ballSpeed;
+            } else if(event.key === "ArrowDown") {
+                ballSpeedY = ballSpeed;
+            } else if(event.key === "ArrowLeft") {
+                ballSpeedX = -ballSpeed;
+            } else if(event.key === "ArrowRight") {
+                ballSpeedX = ballSpeed;
+            }
+        });
+
+               // Обробник подій для відпускання клавіш клавіатури, щоб зупинити рух м'яча
+               document.addEventListener("keyup", function(event) {
+            if(event.key === "ArrowUp" || event.key === "ArrowDown") {
+                ballSpeedY = 0;
+            } else if(event.key === "ArrowLeft" || event.key === "ArrowRight") {
+                ballSpeedX = 0;
+            }
+        });
+
+     
+    </script>
+</body>
+</div>
+<div id="logoContainer">
+<title>SVG Image</title>
+<body>
+    <div class="svg-container">
+        <object data="logo.svg" type="image/svg+xml"> 
+        </object>
+    </div>
+    <style>
+    /* Стилі для контейнера SVG */
+    .svg-container {
+        width: 10px; /* Задаємо ширину */
+        height: 10px; /* Задаємо висоту автоматично, щоб зберегти пропорції */
+    }
+    </style>
+
+</body>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVG Image</title>
+<style>
+    /* Стилі для контейнера SVG */
+    .svg-container {
+        width: 50px; /* Задаємо ширину */
+        height: auto; /* Задаємо висоту автоматично, щоб зберегти пропорції */
+    }
+</style>
+</head>
+</div>
+<style>#gameContainer {
+    float: left; /* Вирівняти контейнер з грою ліворуч */
+    margin-right: 20px; /* Додатковий відступ між грою та логотипом */
+  }
+  
+  #logoContainer {
+    float: left; /* Вирівняти контейнер з логотипом ліворуч */
+  }
+  </style>
+  </body>
+  </div>
+</html>
+

@@ -1,3 +1,5 @@
+
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -80,7 +82,7 @@ body {
   color: black;
 }
 header {
-  background-color: #ad7a55; /* сірий колір */
+  background-color: #ad7a55;
   color: black;
   display: flex;
   justify-content: space-between;
@@ -108,6 +110,7 @@ nav ul li a {
   text-decoration: none;
   color: rgb(37, 30, 30); /* колір тексту посилань */
 }
+
 footer {
   background-color: #6F4E37; /* Сірий колір футера */
   color: rgb(0, 0, 0); /* Колір тексту */

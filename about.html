@@ -18,6 +18,7 @@
                   <li><a href="index.html">Home</a></li>
                   <li><a href="about.html">About us</a></li>
                   <li><a href="contacts.html">Contacts</a></li>
+                  <li><a href="game.html">game</a></li>
               </ul>
           </nav>
       </header>
@@ -94,6 +95,90 @@
 }
 </style>
 
+<body>
+    <h1>Tests</h1>
+    <div id="quiz-container"></div>
+    <button onclick="checkAnswers()">Check the answers</button>
+    <div id="results"></div>
+
+    <script>
+        const questions = [
+            {
+                "question": "What iconic hairstyle is associated with the 1950s?",
+                "answers": ["Mullet", "Pompadour", "Afro", "Beehive"],
+                "correct_answer": "Beehive"
+            },
+            {
+                "question": "Which famous car model epitomized the 1960s American muscle car era?",
+                "answers": ["Ford Mustang", "Chevrolet Corvette", "Volkswagen Beetle", "Dodge Charger"],
+                "correct_answer": "Ford Mustang"
+            },
+            {
+                "question": "What dance craze gained popularity in the 1970s disco era?",
+                "answers": ["Tango", "Breakdance", "Twist", "Hustle"],
+                "correct_answer": "Hustle"
+            },
+            {
+                "question": "Who was a prominent fashion icon in the 1980s?",
+                "answers": ["Audrey Hepburn", "Madonna", "James Dean", "Marilyn Monroe"],
+                "correct_answer": "Madonna"
+            },
+            {
+                "question": "What footwear became popular in the 1950s among teenagers?",
+                "answers": ["Sandals", "Sneakers", "Loafers", "Flip-flops"],
+                "correct_answer": "Sneakers"
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const resultsContainer = document.getElementById('results');
+
+        function displayQuiz() {
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.innerHTML = `
+                    <p>${index + 1}. ${question.question}</p>
+                    <ul>
+                        ${question.answers.map(answer => `<li><input type="radio" name="question${index}" value="${answer}">${answer}</li>`).join('')}
+                    </ul>
+                `;
+                quizContainer.appendChild(questionElement);
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const userAnswers = [];
+
+            questions.forEach((question, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption) {
+                    userAnswers.push(selectedOption.value);
+                    if (selectedOption.value === question.correct_answer) {
+                        score++;
+                    }
+                } else {
+                    userAnswers.push(null);
+                }
+            });
+
+            displayResults(score, userAnswers);
+        }
+
+        function displayResults(score, userAnswers) {
+            resultsContainer.innerHTML = `
+                <h2>Your Score: ${score}/${questions.length}</h2>
+                <h3>Correct Answers:</h3>
+                <ul>
+                    ${questions.map((question, index) => `<li>${question.question}: ${question.correct_answer}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        displayQuiz();
+    </script>
+        
+    
 
 
 <footer>
@@ -102,5 +187,3 @@
     
     <p>© 2024 RetroVogue. All rights reserved.</p></a></p>
 </footer>
-</body>
-</html>
